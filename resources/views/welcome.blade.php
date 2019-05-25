@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>Landscapes</title>
 
@@ -64,8 +65,8 @@
         </style>
     </head>
     <body>
-      <div class="container">
-        <h1 class="title">Landscapes</h1>
-      </div>
+      <div class="container" id="app"></div>
+
+      <script src={{ asset("js/app.js") }}></script>
     </body>
 </html>
