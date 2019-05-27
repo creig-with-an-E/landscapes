@@ -11,6 +11,7 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
         <!-- Styles -->
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <style>
             html, body {
                 background-color: #fff;
@@ -62,10 +63,17 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+            .card-img-top {
+                width: 100%;
+            }
+            .bg-gradient {
+               background-image: linear-gradient(to bottom right, rgba(100,181,246,0.4),rgba(245,124,0,0.4));
+            }
+
         </style>
     </head>
-    <body>
-      <div class="container" id="app"></div>
+    <body class="bg-gradient">
+      <div class="container full-height" id="app"></div>
 
       <script src={{ asset("js/app.js") }}></script>
     </body>
