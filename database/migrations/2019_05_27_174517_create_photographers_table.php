@@ -18,8 +18,8 @@ class CreatePhotographersTable extends Migration
             $table->string('name');
             $table->string('phone');
             $table->string('email')->unique();
-            $table->text('bio');
-            $table->string('profile_picture');
+            $table->text('bio')->nullable();
+            $table->string('profile_picture')->nullable();
             $table->timestamps();
         });
     }

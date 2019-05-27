@@ -10,3 +10,13 @@ Application is created as part of the testing phase
 
 - *npm start* - this will following commands "npm run dev" and "php artisan serve"
 
+### API end points
+#### Photographer
+
+ - [ GET ] **"./api/photographer"** - get all photographers in the system
+ - [ GET ] **"./api/photographer/{id}"** - get specific photographer and their images, photographer has to be passed as part of query string (url)
+ - [ POST ] **"./api/photographer"** - adds new photographer, following params expected as part of form data
+ 
+ #### status codes
+ - *200* = success
+ - *404* = no found

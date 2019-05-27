@@ -16,3 +16,13 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+/*
+    -----------------------------------------
+    Photographer routes
+
+    The routes below are used to fetch photographer(s) data
+ */
+Route::get('photographer', 'PhotographersController@index');
+Route::get('photographer/{id}','PhotographersController@findById');
+Route::post('photographer','PhotographersController@store');
