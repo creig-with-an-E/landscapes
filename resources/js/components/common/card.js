@@ -1,10 +1,19 @@
-import React from "react";
+import React, {useState} from "react";
 
 const Card = (props) =>{
+  const [likeStatus, setLikeStatus] = useState(false);
+
+  const likeButtonClicked = () =>{
+      setLikeStatus(!likeStatus)
+  };
+
+  //icon is either solid or outline based on state
+  const icon = likeStatus? "fas fa-heart" : "far fa-heart";
+
   return(
     <div className={"container mb-3"}>
       <div className={"row"}>
-        <div className={"card p-0"} style={styles.cardStyle}>
+        <div className={"card p-0"} style={styles.cardStyle} onDoubleClick={likeButtonClicked}>
           {/*card image*/}
           <img className={"card-img-top"} style={styles.cardImage} src={`${props.imageUrl}`} alt={"landscape"} />
             {/*card body*/}
@@ -12,8 +21,9 @@ const Card = (props) =>{
               <p className={"text-dark"}>
                   {props.description}
               </p>
-              <span className={"border-0"} style={{backgroundColor:"#F0EDE5"}}>
-                  <span className={"text-dark text-align-left"}><i className={"far fa-heart"} style={{fontSize:16}} onClick={()=>alert("clicked")}></i> </span>
+              <span className={"border-0 text-align-left"} style={{backgroundColor:"#eceff1"}}>
+                  <span className={"text-dark float-left"}><i className={`${icon}`} style={{fontSize:22, color:"red"}} onClick={likeButtonClicked} /> </span>
+                  <span className={"float-right"}>date</span>
               </span>
             </div>
         </div>
@@ -36,7 +46,7 @@ const styles ={
 
     },
     cardBody:{
-      backgroundColor:"#F0EDE5"
+      backgroundColor:"#eceff1"
     },
     cardImage:{
         borderTopRightRadius:5,

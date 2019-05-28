@@ -19,6 +19,7 @@ class CreateImagesTable extends Migration
             $table->string("title");
             $table->text("description");
             $table->string("img");
+            $table->date("date");
             $table->boolean("featured")->default(false);
             $table->timestamps();
         });

@@ -20,3 +20,19 @@ Application is created as part of the testing phase
  #### status codes
  - *200* = success
  - *404* = no found
+ 
+ ### Additional comments
+ - double clicking the card changes the like status
+ 
+ ### Technologies and Tools used
+ 
+ ##### Backend
+ - laravel
+ 
+ ##### Frontend
+ - React
+    - React hooks (first time using react hooks)
+ - Bootstrap 4
+ 
+ ##### Other
+ - Github

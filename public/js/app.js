@@ -61798,16 +61798,36 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Card", function() { return Card; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 var Card = function Card(props) {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      likeStatus = _useState2[0],
+      setLikeStatus = _useState2[1];
+
+  var likeButtonClicked = function likeButtonClicked() {
+    setLikeStatus(!likeStatus);
+  }; //icon is either solid or outline based on state
+
+
+  var icon = likeStatus ? "fas fa-heart" : "far fa-heart";
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "container mb-3"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "row"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "card p-0",
-    style: styles.cardStyle
+    style: styles.cardStyle,
+    onDoubleClick: likeButtonClicked
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     className: "card-img-top",
     style: styles.cardImage,
@@ -61819,21 +61839,22 @@ var Card = function Card(props) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "text-dark"
   }, props.description), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "border-0",
+    className: "border-0 text-align-left",
     style: {
-      backgroundColor: "#F0EDE5"
+      backgroundColor: "#eceff1"
     }
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "text-dark text-align-left"
+    className: "text-dark float-left"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-    className: "far fa-heart",
+    className: "".concat(icon),
     style: {
-      fontSize: 16
+      fontSize: 22,
+      color: "red"
     },
-    onClick: function onClick() {
-      return alert("clicked");
-    }
-  }), " "))))));
+    onClick: likeButtonClicked
+  }), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "float-right"
+  }, "date"))))));
 };
 
 
@@ -61846,7 +61867,7 @@ var styles = {
   },
   cardShadow: {},
   cardBody: {
-    backgroundColor: "#F0EDE5"
+    backgroundColor: "#eceff1"
   },
   cardImage: {
     borderTopRightRadius: 5,
