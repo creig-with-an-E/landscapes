@@ -23,7 +23,8 @@
             }
 
             .full-height {
-                height: 100vh;
+                height: 1500px;
+                text-align:"center"
             }
 
             .flex-center {
@@ -72,8 +73,8 @@
 
         </style>
     </head>
-    <body class="bg-gradient">
-      <div class="container full-height" id="app"></div>
+    <body >
+      <div class="full-height" style="background-color: black;" id="app"></div>
 
       <script src={{ asset("js/app.js") }}></script>
     </body>
