@@ -2,20 +2,20 @@ import React from "react";
 
 const Card = (props) =>{
   return(
-    <div className={"container-fluid mt-4 h-100"}>
+    <div className={"container mb-3"}>
       <div className={"row"}>
-        <div className={"card p-0 rounded "}>
+        <div className={"card p-0"} style={styles.cardStyle}>
           {/*card image*/}
-          <img className={"card-img-top h-75 "} src={`${props.imageUrl}`} alt={"landscape"} />
+          <img className={"card-img-top"} style={styles.cardImage} src={`${props.imageUrl}`} alt={"landscape"} />
             {/*card body*/}
-            <div className={"card-body pb-0"} style={{borderWidth:1, borderColor:"black", backgroundColor:"#fafafa"}}>
-              <p className={"card-text"}>
-                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+            <div className={"card-body pb-0"} style={styles.cardBody}>
+              <p className={"text-dark"}>
+                  {props.description}
               </p>
+              <span className={"border-0"} style={{backgroundColor:"#F0EDE5"}}>
+                  <span className={"text-dark text-align-left"}><i className={"far fa-heart"} style={{fontSize:16}} onClick={()=>alert("clicked")}></i> </span>
+              </span>
             </div>
-          <footer className={"card-footer border-0 pt-2 mt-0"} style={{backgroundColor:"#fafafa"}}>
-              <span className={"text-muted"}>This is the footer</span>
-          </footer>
         </div>
         {/*end of bootstrap card*/}
       </div>
@@ -26,8 +26,21 @@ const Card = (props) =>{
 export { Card }
 
 const styles ={
+    cardStyle:{
+        height:420,
+        borderWidth:1,
+        borderBottomRightRadius:5,
+        borderBottomLeftRadius:5,
+    },
     cardShadow:{
 
+    },
+    cardBody:{
+      backgroundColor:"#F0EDE5"
+    },
+    cardImage:{
+        borderTopRightRadius:5,
+        borderTopLeftRadius:5,
+        height:300
     }
-
 }

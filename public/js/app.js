@@ -61515,17 +61515,6 @@ module.exports = function(module) {
 
 /***/ }),
 
-/***/ "./resources/images/profile.jpeg":
-/*!***************************************!*\
-  !*** ./resources/images/profile.jpeg ***!
-  \***************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "/images/profile.jpeg?4b508f0668a1423b273e6fd0704c6363";
-
-/***/ }),
-
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -61622,6 +61611,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./common */ "./resources/js/components/common/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
+
+
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -61644,46 +61637,91 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var App =
 /*#__PURE__*/
 function (_Component) {
   _inherits(App, _Component);
 
-  function App() {
+  function App(props) {
+    var _this;
+
     _classCallCheck(this, App);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(App).apply(this, arguments));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(App).call(this, props));
+    _this.state = {
+      data: null,
+      loading: false
+    };
+    return _this;
   }
 
   _createClass(App, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      this.setState({
+        loading: true
+      }); //starting spinner
+
+      axios__WEBPACK_IMPORTED_MODULE_3___default.a.get("./api/photographer/1").then(function (result) {
+        console.log(result);
+
+        _this2.setState({
+          data: result.data,
+          loading: false
+        });
+      })["catch"](function (error) {
+        _this2.setState({
+          loading: false
+        });
+
+        console.log(error);
+      });
+    }
+  }, {
+    key: "renderImageCards",
+    value: function renderImageCards() {
+      var gallery = null;
+
+      if (this.state.data) {
+        var album = this.state.data.album;
+        gallery = album.map(function (element) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+            className: "col-10 col-sm-10 col-md-6 col-lg-5 mb-5",
+            key: element.id
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common__WEBPACK_IMPORTED_MODULE_2__["Card"], {
+            imageUrl: element.img,
+            description: element.description
+          }));
+        });
+        return gallery;
+      } else {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          style: {
+            color: "white"
+          }
+        }, "No data found !!"));
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
+      //importing variables from state
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "container h-100",
-        style: {
-          backgroundColor: "black"
-        }
+        className: "container h-100"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
         className: "row"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common__WEBPACK_IMPORTED_MODULE_2__["ProfileSection"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+      }, this.state.data ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common__WEBPACK_IMPORTED_MODULE_2__["ProfileSection"], {
+        name: this.state.data.name,
+        bio: this.state.data.bio,
+        profilePic: this.state.data.profile_picture,
+        phone: this.state.data.phone,
+        email: this.state.data.email
+      }) : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
         className: "row align-self-center text-center"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "col-lg-5 col-md-6 col-sm-8 col-10"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common__WEBPACK_IMPORTED_MODULE_2__["Card"], {
-        imageUrl: "./img/landscape1.jpeg"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "col-lg-5 col-md-6 col-sm-8 col-10 "
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common__WEBPACK_IMPORTED_MODULE_2__["Card"], {
-        imageUrl: "./img/landscape2.jpeg"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "col-lg-5 col-md-6 col-sm-8 col-10 "
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common__WEBPACK_IMPORTED_MODULE_2__["Card"], {
-        imageUrl: "./img/landscape3.jpeg"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "col-lg-5 col-md-6 col-sm-8 col-10"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common__WEBPACK_IMPORTED_MODULE_2__["Card"], {
-        imageUrl: "./img/landscape5.jpeg"
-      }))));
+      }, this.renderImageCards()));
     }
   }]);
 
@@ -61708,27 +61746,43 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
 
-var image = __webpack_require__(/*! ./../../../images/profile.jpeg */ "./resources/images/profile.jpeg");
-
-var ProfileSection = function ProfileSection() {
+var ProfileSection = function ProfileSection(_ref) {
+  var name = _ref.name,
+      bio = _ref.bio,
+      profilePic = _ref.profilePic,
+      email = _ref.email,
+      phone = _ref.phone;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "row w-100 jumbotron h-75 p-2 bg-dark",
-    style: {
-      backgroundColor: "#fafafa"
-    }
+    className: "row w-100 jumbotron h-75 p-2"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
     className: "col-3 col-lg-2"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: "".concat(image),
+    src: "".concat(profilePic),
     className: "img-fluid rounded-circle"
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
-    className: "col-5 text-white"
-  }, "name"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
-    className: "col-3 text-white"
-  }, "number"));
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main", {
+    className: "col"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    style: styles.headerStyle,
+    className: "col-12"
+  }, name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+    className: "col-8"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Bio"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    style: styles.bioStyle
+  }, bio)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Phone"), phone, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "Email"), email))));
 };
 
 
+var styles = {
+  headerStyle: {
+    fontSize: 24,
+    textAlign: "center"
+  },
+  bioStyle: {
+    fontSize: 14
+  }
+};
 
 /***/ }),
 
@@ -61748,37 +61802,57 @@ __webpack_require__.r(__webpack_exports__);
 
 var Card = function Card(props) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "container-fluid mt-4 h-100"
+    className: "container mb-3"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "row"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "card p-0 rounded "
+    className: "card p-0",
+    style: styles.cardStyle
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    className: "card-img-top h-75 ",
+    className: "card-img-top",
+    style: styles.cardImage,
     src: "".concat(props.imageUrl),
     alt: "landscape"
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "card-body pb-0",
-    style: {
-      borderWidth: 1,
-      borderColor: "black",
-      backgroundColor: "#fafafa"
-    }
+    style: styles.cardBody
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    className: "card-text"
-  }, "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\"")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("footer", {
-    className: "card-footer border-0 pt-2 mt-0",
+    className: "text-dark"
+  }, props.description), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "border-0",
     style: {
-      backgroundColor: "#fafafa"
+      backgroundColor: "#F0EDE5"
     }
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "text-muted"
-  }, "This is the footer")))));
+    className: "text-dark text-align-left"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "far fa-heart",
+    style: {
+      fontSize: 16
+    },
+    onClick: function onClick() {
+      return alert("clicked");
+    }
+  }), " "))))));
 };
 
 
 var styles = {
-  cardShadow: {}
+  cardStyle: {
+    height: 420,
+    borderWidth: 1,
+    borderBottomRightRadius: 5,
+    borderBottomLeftRadius: 5
+  },
+  cardShadow: {},
+  cardBody: {
+    backgroundColor: "#F0EDE5"
+  },
+  cardImage: {
+    borderTopRightRadius: 5,
+    borderTopLeftRadius: 5,
+    height: 300
+  }
 };
 
 /***/ }),

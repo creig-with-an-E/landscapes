@@ -9,6 +9,8 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+
 
         <!-- Styles -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -18,13 +20,12 @@
                 color: #636b6f;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
-                height: 100vh;
+                /*height: 100vh;*/
                 margin: 0;
             }
 
             .full-height {
                 height: 1500px;
-                text-align:"center"
             }
 
             .flex-center {
@@ -74,7 +75,7 @@
         </style>
     </head>
     <body >
-      <div class="full-height" style="background-color: black;" id="app"></div>
+      <div class="full-height" id="app"></div>
 
       <script src={{ asset("js/app.js") }}></script>
     </body>

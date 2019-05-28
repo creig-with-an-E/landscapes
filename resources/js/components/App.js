@@ -1,30 +1,74 @@
+"use strict";
+
 import React,{ Component } from "react";
 import ReactDOM from "react-dom";
-import {Card, ProfileSection} from "./common"
+import { Card, ProfileSection} from "./common"
+import axios from "axios";
 
 class App extends Component{
+    constructor(props){
+        super(props)
+        this.state = {
+            data: null,
+            loading:false,
+        }
+    }
+    componentDidMount(){
+        this.setState({loading: true });
+        //starting spinner
+
+        axios.get("./api/photographer/1")
+          .then((result)=>{
+            console.log(result);
+             this.setState({
+                 data: result.data,
+                 loading: false,
+             })
+          }).catch(error=>{
+              this.setState({
+                  loading: false,
+              });
+              console.log(error)})
+    }
+
+    renderImageCards(){
+        let gallery = null;
+        if(this.state.data){
+            const { album } = this.state.data;
+             gallery = album.map((element)=>{
+                 return (
+                     <span className={"col-10 col-sm-10 col-md-6 col-lg-5 mb-5"}
+                           key={element.id} >
+                       <Card imageUrl={element.img}
+                           description={element.description}
+                       />
+                      </span>
+                 )
+            });
+        return gallery;
+        }else{
+                return <div><p style={{color:"white"}}>No data found !!</p></div>
+             }
+    }
+
     render(){
+      //importing variables from state
       return(
-        <div className={"container h-100"} style={{backgroundColor:"black"}}>
+        <div className={"container h-100"}>
           <section className={"row"}>
-            <ProfileSection/>
+              {
+                  this.state.data? <ProfileSection name={this.state.data.name}
+                  bio={this.state.data.bio}
+                  profilePic={this.state.data.profile_picture}
+                  phone={this.state.data.phone}
+                  email={this.state.data.email}
+                  /> : null
+              }
           </section>
           <section className={"row align-self-center text-center"}>
-            <span className={"col-lg-5 col-md-6 col-sm-8 col-10"}>
-              <Card imageUrl={"./img/landscape1.jpeg"}/>
-            </span>
-
-            <span className={"col-lg-5 col-md-6 col-sm-8 col-10 "}>
-              <Card imageUrl={"./img/landscape2.jpeg"}/>
-            </span>
-
-            <span className={"col-lg-5 col-md-6 col-sm-8 col-10 "}>
-              <Card imageUrl={"./img/landscape3.jpeg"}/>
-            </span>
-
-            <span className={"col-lg-5 col-md-6 col-sm-8 col-10"}>
-              <Card imageUrl={"./img/landscape5.jpeg"}/>
-            </span>
+              {
+                  this.renderImageCards()
+              }
           </section>
         </div>
       )

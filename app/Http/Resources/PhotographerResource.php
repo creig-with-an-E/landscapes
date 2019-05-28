@@ -19,7 +19,8 @@ class PhotographerResource extends JsonResource
             "phone"=> $this->phone,
             "email"=> $this->email,
             "bio"=> $this->bio,
-            "album"=> $this->images
+            "album"=> $this->images,
+            "profile_picture"=>$this->profile_picture,
         ];
     }
 }
