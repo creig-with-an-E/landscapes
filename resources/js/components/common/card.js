@@ -23,7 +23,7 @@ const Card = (props) =>{
               </p>
               <span className={"border-0 text-align-left"} style={{backgroundColor:"#eceff1"}}>
                   <span className={"text-dark float-left"}><i className={`${icon}`} style={{fontSize:22, color:"red"}} onClick={likeButtonClicked} /> </span>
-                  <span className={"float-right"}>date</span>
+                  <span className={"float-right"}>{props.date}</span>
               </span>
             </div>
         </div>

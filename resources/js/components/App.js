@@ -41,6 +41,7 @@ class App extends Component{
                            key={element.id} >
                        <Card imageUrl={element.img}
                            description={element.description}
+                           date={element.date}
                        />
                       </span>
                  )

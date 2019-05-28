@@ -99,7 +99,7 @@ return [
         ],
         'my_heroku_mysql_connection' => array(
             'driver' => 'mysql',
-            'host' => $host,
+            'host' => $host ,
             'database' => $database,
             'username' => $username,
             'password' => $password,
